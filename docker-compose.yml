@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 services:
   web:
     container_name: imapi_web
@@ -26,7 +26,7 @@ services:
         source: .
         target: /app
     ports:
-      - "3000:3000"
+      - '3000:3000'
     depends_on:
       - db
   db:
@@ -36,7 +36,7 @@ services:
       context: ./.docker/mysql
       dockerfile: Dockerfile
     ports:
-      - "3306:3306"
+      - '3306:3306'
     tty: true
     volumes:
       - ./.docker/mysql/mysql_data:/var/lib/mysql
