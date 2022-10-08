@@ -2,6 +2,9 @@
 /dist
 /node_modules
 
+# Other
+/.docker/mysql/mysql_data/
+
 # Logs
 logs
 *.log
