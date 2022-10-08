@@ -7,7 +7,7 @@ services:
       context: ./.docker/nginx
       dockerfile: Dockerfile
     ports:
-      - 10080:80
+      - 9080:80
     volumes:
       - ./.docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
       - .:/var/www/html
