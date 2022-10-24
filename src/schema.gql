@@ -1,0 +1,72 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateGenreInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateItemInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Genre {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Item {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Mutation {
+  createGenre(createGenreInput: CreateGenreInput!): Genre!
+  createItem(createItemInput: CreateItemInput!): Item!
+  createUser(createUserInput: CreateUserInput!): User!
+  removeGenre(id: Int!): Genre!
+  removeItem(id: Int!): Item!
+  removeUser(id: Int!): User!
+  updateGenre(updateGenreInput: UpdateGenreInput!): Genre!
+  updateItem(updateItemInput: UpdateItemInput!): Item!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Query {
+  genre(id: Int!): Genre!
+  genres: [Genre!]!
+  item(id: Int!): Item!
+  items: [Item!]!
+  user(id: Int!): User!
+  users: [User!]!
+}
+
+input UpdateGenreInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateItemInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+type User {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}

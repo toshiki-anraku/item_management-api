@@ -30,11 +30,17 @@ npm install
 6. NestJS 起動
 
 ```
-npm run start
+npm run start:dev
 ```
 
 7. ブラウザで起動確認
 
 ```
 http://tebura-api.local:9080/
+```
+
+8. GraphQL IDE 起動確認
+
+```
+http://tebura-api.local:9080/graphql
 ```
