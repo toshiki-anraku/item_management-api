@@ -1,0 +1,42 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model users {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(32)
+  password   String   @db.VarChar(32)
+  mail       String   @db.VarChar(255)
+  reset_url  String   @db.VarChar(255)
+  created_at DateTime @default(dbgenerated("NOW()")) @db.Timestamp(0)
+  updated_at DateTime @default(dbgenerated("NOW() ON UPDATE CURRENT_TIMESTAMP")) @db.Timestamp(0)
+  items      items[]
+}
+
+model items {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  genre_id   Int
+  name       String   @db.VarChar(64)
+  status     Int
+  img_path   String   @db.VarChar(255)
+  priority   Int
+  memo       String   @db.Text
+  created_at DateTime @default(dbgenerated("NOW()")) @db.Timestamp(0)
+  updated_at DateTime @default(dbgenerated("NOW() ON UPDATE CURRENT_TIMESTAMP")) @db.Timestamp(0)
+  users      users    @relation(fields: [user_id], references: [id])
+  genres     genres   @relation(fields: [genre_id], references: [id])
+}
+
+model genres {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(32)
+  created_at DateTime @default(dbgenerated("NOW()")) @db.Timestamp(0)
+  updated_at DateTime @default(dbgenerated("NOW() ON UPDATE CURRENT_TIMESTAMP")) @db.Timestamp(0)
+  items      items[]
+}
