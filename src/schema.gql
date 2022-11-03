@@ -17,6 +17,11 @@ input CreateUserInput {
   exampleField: Int!
 }
 
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Genre {
   """Example field (placeholder)"""
   exampleField: Int!
@@ -67,6 +72,24 @@ input UpdateUserInput {
 }
 
 type User {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """作成日"""
+  created_at: DateTime!
+
+  """ユーザーID"""
+  id: ID!
+
+  """メールアドレス"""
+  mail: String!
+
+  """氏名"""
+  name: String!
+
+  """パスワード"""
+  password: String!
+
+  """パスワードリセット"""
+  reset_url: String
+
+  """更新日"""
+  updated_at: DateTime!
 }

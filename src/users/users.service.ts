@@ -9,7 +9,35 @@ export class UsersService {
   }
 
   findAll() {
-    return `This action returns all users`;
+    return [
+      {
+        id: 1,
+        name: 'anraku',
+        password: 'password',
+        mail: 'anraku@anraku.com',
+        reset_url: 'https://anraku/reset',
+        created_at: '2022-10-28 22:50:14.611',
+        updated_at: '2022-10-28 22:50:14.611',
+      },
+      {
+        id: 2,
+        name: 'sasao',
+        password: 'password',
+        mail: 'sasao@sasao.com',
+        reset_url: 'https://sasao/reset',
+        created_at: '2022-10-28 22:50:14.611',
+        updated_at: '2022-10-28 22:50:14.611',
+      },
+      {
+        id: 3,
+        name: 'murasato',
+        password: 'password',
+        mail: 'murasato@murasato.com',
+        reset_url: 'https://murasato/reset',
+        created_at: '2022-10-28 22:50:14.611',
+        updated_at: '2022-10-28 22:50:14.611',
+      },
+    ];
   }
 
   findOne(id: number) {
