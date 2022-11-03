@@ -27,6 +27,7 @@ services:
         target: /app
     ports:
       - '3000:3000'
+      - '5555:5555' #Prisma Studio
     depends_on:
       - db
   db:
