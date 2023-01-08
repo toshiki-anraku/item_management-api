@@ -1,42 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
+model User {
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(32)
+  email         String    @db.VarChar(255)
+  emailVerified DateTime? @map("email_verified") @db.Timestamp(0)
+  image         String?   @db.VarChar(255)
+  createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
+  items         Item[]
+  accounts      Account[]
+  sessions      Session[]
+
+  @@map("users")
 }
 
-model users {
-  id         Int      @id @default(autoincrement())
-  name       String   @db.VarChar(32)
-  password   String   @db.VarChar(32)
-  mail       String   @db.VarChar(255)
-  reset_url  String   @db.VarChar(255)
-  created_at DateTime @default(dbgenerated("NOW()")) @db.Timestamp(0)
-  updated_at DateTime @default(dbgenerated("NOW() ON UPDATE CURRENT_TIMESTAMP")) @db.Timestamp(0)
-  items      items[]
+model Item {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  user      User     @relation(fields: [userId], references: [id])
+  genreId   Int      @map("genre_id")
+  genre     Genre    @relation(fields: [genreId], references: [id])
+  name      String   @db.VarChar(64)
+  status    Int
+  imgPath   String   @map("img_path") @db.VarChar(255)
+  priority  Int
+  memo      String   @db.Text
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
+
+  @@map("items")
 }
 
-model items {
-  id         Int      @id @default(autoincrement())
-  user_id    Int
-  genre_id   Int
-  name       String   @db.VarChar(64)
-  status     Int
-  img_path   String   @db.VarChar(255)
-  priority   Int
-  memo       String   @db.Text
-  created_at DateTime @default(dbgenerated("NOW()")) @db.Timestamp(0)
-  updated_at DateTime @default(dbgenerated("NOW() ON UPDATE CURRENT_TIMESTAMP")) @db.Timestamp(0)
-  users      users    @relation(fields: [user_id], references: [id])
-  genres     genres   @relation(fields: [genre_id], references: [id])
+model Genre {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(32)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
+  items     Item[]
+
+  @@map("genres")
 }
 
-model genres {
-  id         Int      @id @default(autoincrement())
-  name       String   @db.VarChar(32)
-  created_at DateTime @default(dbgenerated("NOW()")) @db.Timestamp(0)
-  updated_at DateTime @default(dbgenerated("NOW() ON UPDATE CURRENT_TIMESTAMP")) @db.Timestamp(0)
-  items      items[]
+model Account {
+  id                Int       @id @default(autoincrement())
+  userId            Int       @map("user_id")
+  user              User      @relation(fields: [userId], references: [id])
+  type              String?   @db.VarChar(255)
+  provider          String?   @db.VarChar(255)
+  providerAccountId String?   @map("provider_account_id") @db.VarChar(255)
+  refreshToken      String?   @map("refresh_token") @db.VarChar(255)
+  accessToken       String?   @map("access_token") @db.VarChar(255)
+  expiresAt         Int?      @map("expires_at")
+  tokenType         String?   @map("token_type") @db.VarChar(255)
+  scope             String?   @db.VarChar(255)
+  idToken           String?   @map("id_token") @db.VarChar(255)
+  sessionState      String?   @map("session_state") @db.VarChar(255)
+  oauthTokenSecret  String?   @map("oauth_token_secret") @db.VarChar(255)
+  oauthToken        String?   @map("oauth_token") @db.VarChar(255)
+  createdAt         DateTime? @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt         DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
+
+  @@map("accounts")
+}
+
+model Session {
+  id           Int       @id @default(autoincrement())
+  expires      DateTime? @db.Timestamp(0)
+  sessionToken String?   @map("session_token") @db.VarChar(255)
+  userId       Int       @map("user_id")
+  user         User      @relation(fields: [userId], references: [id])
+  createdAt    DateTime? @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt    DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  id         Int       @id @default(autoincrement())
+  identifier String?   @db.VarChar(255)
+  token      String?   @db.VarChar(255)
+  expires    DateTime? @db.Timestamp(0)
+  createdAt  DateTime? @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt  DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
+
+  @@map("verification_tokens")
 }
