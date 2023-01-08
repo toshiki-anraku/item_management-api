@@ -29,8 +29,7 @@ model Item {
   genreId   Int      @map("genre_id")
   genre     Genre    @relation(fields: [genreId], references: [id])
   name      String   @db.VarChar(64)
-  status    Int
-  imgPath   String   @map("img_path") @db.VarChar(255)
+  imgPath   String?  @map("img_path") @db.VarChar(255)
   priority  Int
   memo      String   @db.Text
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(0)

@@ -1,3 +1,14 @@
+# DB 接続情報
+
+```
+Host/Socket：127.0.0.1
+Port：3306
+User：root
+Password：root
+
+DbName：item_management
+```
+
 ## 環境構築
 
 1. ターミナル起動
@@ -49,4 +60,36 @@ http://tebura-api.local:9080/graphql
 
 ```
 http://tebura-prisma-studio.local:9080/
+```
+
+## 主要コマンド一覧
+
+### Prisma スキーマの情報を DB へ反映
+
+```
+npx prisma db push
+```
+
+### DB の情報を Prisma スキーマへ反映
+
+```
+npx prisma db pull
+```
+
+### Seeder 実行
+
+```
+npx prisma db seed
+```
+
+### DB のトランケート
+
+```
+yarn prisma:truncate
+```
+
+### Prisma クライアントの更新 ※Prisma モデルを変更した場合は実行
+
+```
+npx prisma generate
 ```
