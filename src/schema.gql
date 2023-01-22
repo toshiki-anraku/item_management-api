@@ -3,8 +3,7 @@
 # ------------------------------------------------------
 
 input CreateGenreInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
 }
 
 input CreateItemInput {
@@ -27,8 +26,12 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Genre {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  createdAt: DateTime!
+
+  """ユーザーID"""
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
 }
 
 type Item {
@@ -58,9 +61,9 @@ type Query {
 }
 
 input UpdateGenreInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  """ジャンルID"""
+  id: ID!
+  name: String
 }
 
 input UpdateItemInput {
