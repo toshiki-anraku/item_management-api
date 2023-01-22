@@ -13,8 +13,12 @@ input CreateItemInput {
 }
 
 input CreateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  email: String
+
+  """ユーザーID"""
+  id: ID!
+  image: String
+  name: String
 }
 
 """
@@ -66,30 +70,22 @@ input UpdateItemInput {
 }
 
 input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-type User {
-  """作成日"""
-  created_at: DateTime!
+  email: String
 
   """ユーザーID"""
   id: ID!
+  image: String
+  name: String
+}
 
-  """メールアドレス"""
-  mail: String!
+type User {
+  created_at: DateTime!
+  email: String!
+  emailVerified: DateTime!
 
-  """氏名"""
+  """ユーザーID"""
+  id: ID!
+  image: String!
   name: String!
-
-  """パスワード"""
-  password: String!
-
-  """パスワードリセット"""
-  reset_url: String
-
-  """更新日"""
   updated_at: DateTime!
 }
