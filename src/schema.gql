@@ -7,8 +7,12 @@ input CreateGenreInput {
 }
 
 input CreateItemInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  genreId: Float!
+  imgPath: String
+  memo: String!
+  name: String!
+  priority: Float!
+  userId: Float!
 }
 
 input CreateUserInput {
@@ -35,8 +39,19 @@ type Genre {
 }
 
 type Item {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  createdAt: DateTime!
+  genre: Genre!
+  genreId: Float!
+
+  """ジャンルID"""
+  id: ID!
+  imgPath: String!
+  memo: String!
+  name: String!
+  priority: Float!
+  updatedAt: DateTime!
+  user: User!
+  userId: Float!
 }
 
 type Mutation {
@@ -67,9 +82,15 @@ input UpdateGenreInput {
 }
 
 input UpdateItemInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  genreId: Float
+
+  """アイテムID"""
+  id: ID!
+  imgPath: String
+  memo: String
+  name: String
+  priority: Float
+  userId: Float
 }
 
 input UpdateUserInput {
