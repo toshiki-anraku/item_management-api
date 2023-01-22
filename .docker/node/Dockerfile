@@ -1,4 +1,4 @@
-FROM node:16-slim
+FROM node:18
 WORKDIR /app
 RUN apt-get update && \
     apt-get install -y git vim && \
