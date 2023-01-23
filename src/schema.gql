@@ -1,0 +1,115 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateGenreInput {
+  name: String!
+}
+
+input CreateItemInput {
+  genreId: Float!
+  imgPath: String
+  memo: String!
+  name: String!
+  priority: Float!
+  userId: Float!
+}
+
+input CreateUserInput {
+  email: String
+
+  """ユーザーID"""
+  id: ID!
+  image: String
+  name: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Genre {
+  createdAt: DateTime!
+
+  """ユーザーID"""
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type Item {
+  createdAt: DateTime!
+  genre: Genre!
+  genreId: Float!
+
+  """ジャンルID"""
+  id: ID!
+  imgPath: String!
+  memo: String!
+  name: String!
+  priority: Float!
+  updatedAt: DateTime!
+  user: User!
+  userId: Float!
+}
+
+type Mutation {
+  createGenre(createGenreInput: CreateGenreInput!): Genre!
+  createItem(createItemInput: CreateItemInput!): Item!
+  createUser(createUserInput: CreateUserInput!): User!
+  removeGenre(id: Int!): Genre!
+  removeItem(id: Int!): Item!
+  removeUser(id: Int!): User!
+  updateGenre(updateGenreInput: UpdateGenreInput!): Genre!
+  updateItem(updateItemInput: UpdateItemInput!): Item!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Query {
+  genre(id: Int!): Genre!
+  genres: [Genre!]!
+  item(id: Int!): Item!
+  items: [Item!]!
+  user(id: Int!): User!
+  users: [User!]!
+}
+
+input UpdateGenreInput {
+  """ジャンルID"""
+  id: ID!
+  name: String
+}
+
+input UpdateItemInput {
+  genreId: Float
+
+  """アイテムID"""
+  id: ID!
+  imgPath: String
+  memo: String
+  name: String
+  priority: Float
+  userId: Float
+}
+
+input UpdateUserInput {
+  email: String
+
+  """ユーザーID"""
+  id: ID!
+  image: String
+  name: String
+}
+
+type User {
+  created_at: DateTime!
+  email: String!
+  emailVerified: DateTime!
+
+  """ユーザーID"""
+  id: ID!
+  image: String!
+  name: String!
+  updated_at: DateTime!
+}
